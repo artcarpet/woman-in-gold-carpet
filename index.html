@@ -100,22 +100,29 @@ h1{
 
 .buttons{
     display:flex;
-    flex-wrap:wrap;
     justify-content:center;
-    gap:15px;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:18px;
+    margin:35px auto;
 }
 
 .buttons a{
+    display:inline-block;
     background:#d4af37;
-    color:black;
+    color:#111;
     text-decoration:none;
     padding:14px 28px;
-    border-radius:8px;
+    border-radius:10px;
     font-weight:bold;
+    min-width:180px;
+    text-align:center;
+    transition:.25s;
 }
 
 .buttons a:hover{
-    opacity:.85;
+    opacity:.9;
+    transform:translateY(-2px);
 }
 .about{
     max-width:700px;
