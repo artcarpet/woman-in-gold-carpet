@@ -1,13 +1,18 @@
+# index.html
 
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Woman in Gold Carpet</title>
 
 <style>
-    .logo{
+
+.logo{
     position:fixed;
     top:30px;
     left:35px;
@@ -28,34 +33,17 @@
     margin-top:5px;
     font-weight:normal;
 }
-.polygon-image{
-    display:block;
-    width:260px;
-    height:260px;
-    object-fit:cover;
-    margin:25px auto 25px;
-    border-radius:18px;
-}
-body{.hero{
-    width:100%;
-    max-width:900px;
-    margin:auto;
-    padding:40px 20px;
+
+body{
+    margin:0;
+    background:#111;
+    color:white;
+    font-family:Arial, Helvetica, sans-serif;
+    text-align:center;
 }
 
-.hero img{
-    width:100%;
-    border-radius:18px;
-}
+/* Main title area */
 
- .hero-video{
-    width:70%;
-    max-width:900px;
-    border-radius:18px;
-    display:block;
-    margin:40px auto;
-}
-    
 .page-title{
     max-width:900px;
     margin:35px auto 25px;
@@ -66,7 +54,18 @@ body{.hero{
 .page-title h1{
     font-size:52px;
     color:#d4af37;
-    margin:0 0 12px;
+    margin:0 0 20px;
+}
+
+/* Polygon image */
+
+.polygon-image{
+    display:block;
+    width:300px;
+    height:300px;
+    object-fit:cover;
+    margin:0 auto 25px;
+    border-radius:18px;
 }
 
 .page-title .subtitle{
@@ -85,47 +84,20 @@ body{.hero{
 .page-title .event em{
     font-style:italic;
 }
-h1{
-    font-size:42px;
-    margin-top:10px;
-    color:#d4af37;
+
+/* Reveal video */
+
+.hero-video{
+    width:70%;
+    max-width:900px;
+    border-radius:18px;
+    display:block;
+    margin:40px auto;
 }
 
-.subtitle{
-    color:#cccccc;
-    font-size:18px;
-    margin-bottom:40px;
+/* Artist statement */
 
 .about{
-    max-width:700px;
-    margin:45px auto;
-    padding:0 20px;
-}
-
-.about h2{
-    color:#d4af37;
-    font-size:28px;
-    margin-bottom:18px;
-}
-
-.about p{
-    color:#d8d8d8;
-    font-size:17px;
-    line-height:1.9;
-    text-align:center;}
-    footer{
-    margin-top:70px;
-    padding:35px 20px;
-    border-top:1px solid #333;
-    color:#888;
-    font-size:14px;
-    line-height:1.8;
-}
-
-footer p{
-    margin:6px 0;
-}
-   .about{
     max-width:700px;
     margin:50px auto;
     padding:0 20px;
@@ -141,22 +113,9 @@ footer p{
     color:#d9d9d9;
     line-height:1.8;
     font-size:17px;
-} 
-  .interview-title{
-    color:#d4af37;
-    font-size:22px;
-    font-weight:400;
-    margin-top:60px;
-    margin-bottom:10px;
-    letter-spacing:0.5px;
 }
-.gold-line{
-    width:120px;
-    height:2px;
-    background:#d4af37;
-    margin:12px auto 35px;
-    border-radius:2px;
-}
+
+/* Interview videos */
 
 .interview-video{
     width:70%;
@@ -165,21 +124,64 @@ footer p{
     display:block;
     margin:40px auto;
 }
-    
-}  
-</style>
 
-</head>
-    
-<body>
-    .polygon-image{
-    display:block;
-    width:300px;
-    height:300px;
-    object-fit:cover;
-    margin:25px auto;
-    border-radius:18px;
+/* Footer */
+
+footer{
+    margin-top:70px;
+    padding:35px 20px;
+    border-top:1px solid #333;
+    color:#888;
+    font-size:14px;
+    line-height:1.8;
 }
+
+footer p{
+    margin:6px 0;
+}
+
+/* Mobile */
+
+@media (max-width:600px){
+
+    .logo{
+        position:relative;
+        top:auto;
+        left:auto;
+        margin:25px 0 10px;
+        text-align:center;
+    }
+
+    .page-title h1{
+        font-size:38px;
+    }
+
+    .page-title .subtitle{
+        font-size:20px;
+    }
+
+    .page-title .event{
+        font-size:16px;
+    }
+
+    .polygon-image{
+        width:240px;
+        height:240px;
+    }
+
+    .hero-video,
+    .interview-video{
+        width:90%;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- Logo -->
 
 <div class="logo">
     ARTCarpet
@@ -187,61 +189,87 @@ footer p{
 </div>
 
 
+<!-- Main title -->
+
 <div class="page-title">
 
-<h1>Woman in Gold Carpet</h1>
+    <h1>Woman in Gold Carpet</h1>
 
-<img class="polygon-image" src="polygon.jpg" alt="Polygon NFT">
+    <!-- Polygon image -->
 
-<p class="subtitle">
-Official Website of the 1/1 NFT Artwork
-</p>
+    <img
+        class="polygon-image"
+        src="polygon.jpg"
+        alt="Polygon NFT"
+    >
 
-<p class="event">
-This artistic masterpiece was officially unveiled by <em>the Ambassador of Austria to Iran</em> on January 23, 2018, at the <em>Parsian Hotel, Tehran</em>.
-</p>
+    <p class="subtitle">
+        Official Website of the 1/1 NFT Artwork
+    </p>
+
+    <p class="event">
+        This artistic masterpiece was officially unveiled by
+        <em>the Ambassador of Austria to Iran</em>
+        on January 23, 2018, at the
+        <em>Parsian Hotel, Tehran</em>.
+    </p>
 
 </div>
+
+
+<!-- Reveal video -->
+
 <video class="hero-video" controls playsinline>
     <source src="reveal.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
 
 
-</div>
+<!-- Artist Statement -->
 
 <section class="about">
 
-<h2>Artist Statement</h2>
+    <h2>Artist Statement</h2>
 
-<p>
-Woman in Gold Carpet is a unique 1/1 NFT artwork inspired by the timeless beauty of Persian carpet weaving. It combines cultural heritage with contemporary digital art and is permanently preserved on the Polygon blockchain.
-</p>
+    <p>
+        Woman in Gold Carpet is a unique 1/1 NFT artwork inspired by
+        the timeless beauty of Persian carpet weaving. It combines
+        cultural heritage with contemporary digital art and is
+        permanently preserved on the Polygon blockchain.
+    </p>
+
+</section>
 
 
+<!-- Ambassador interview -->
 
 <video class="interview-video" controls playsinline>
     <source src="ambassador-interview.mp4" type="video/mp4">
+    Your browser does not support the video tag.
 </video>
 
 
+<!-- Second interview -->
+
 <video class="interview-video" controls playsinline>
     <source src="Interview2.mp4" type="video/mp4">
-</video>    
+    Your browser does not support the video tag.
+</video>
 
 
-</div>
+<!-- Footer -->
 
-  
-  
 <footer>
 
-<p>© 2026 Woman in Gold Carpet</p>
+    <p>© 2026 Woman in Gold Carpet</p>
 
-<p>All Rights Reserved</p>
+    <p>All Rights Reserved</p>
 
-<p>Powered by Polygon Blockchain</p>
+    <p>Powered by Polygon Blockchain</p>
 
 </footer>
 
+
+</body>
 </html>
+```
