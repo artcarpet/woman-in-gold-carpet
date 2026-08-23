@@ -87,8 +87,14 @@
   .nav-cta:hover { background: #ffc72c; }
 
   /* Hero */
+  .hero-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
   .hero-section {
+    position: relative;
     padding: 70px 40px 40px;
+    z-index: 2;
   }
   .badge {
     display: inline-flex;
@@ -128,9 +134,11 @@
 
   /* Stats */
   .stats {
+    position: relative;
+    z-index: 2;
     display: flex;
     gap: 70px;
-    padding: 30px 40px 70px;
+    padding: 30px 40px 100px;
   }
   .stat-item .stat-number {
     font-family: 'Consolas', 'Courier New', monospace;
@@ -144,6 +152,24 @@
     font-size: 0.75rem;
     color: #fff;
     letter-spacing: 0.5px;
+  }
+
+  /* Klimt-inspired circuit line */
+  .klimt-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .klimt-text {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    fill: #f5b400;
   }
 </style>
 </head>
@@ -162,30 +188,44 @@
     <a href="#" class="nav-cta">Click to Buy →</a>
   </nav>
 
-  <section class="hero-section">
-    <div class="badge">
-      <span class="dot"></span>
-      <span class="label">More Than An NFT</span>
-    </div>
-    <h1 class="hero-title">
-      A Persian Handwoven Masterpiece
-      <span class="sub">Now on the Blockchain</span>
-    </h1>
-  </section>
+  <div class="hero-wrapper">
 
-  <div class="stats">
-    <div class="stat-item">
-      <div class="stat-number">2015</div>
-      <div class="stat-label">Founded</div>
+    <svg class="klimt-line" viewBox="0 0 1400 700" preserveAspectRatio="none">
+      <polyline points="150,620 150,520 350,400 350,260 700,260 700,120 950,120"
+                fill="none" stroke="#f5b400" stroke-width="1.5" opacity="0.7"/>
+      <circle cx="150" cy="620" r="5" fill="none" stroke="#f5b400" stroke-width="1.5"/>
+      <circle cx="950" cy="120" r="5" fill="none" stroke="#f5b400" stroke-width="1.5"/>
+      <circle cx="350" cy="400" r="3" fill="#f5b400" opacity="0.8"/>
+      <circle cx="700" cy="260" r="3" fill="#f5b400" opacity="0.8"/>
+      <text x="965" y="125" class="klimt-text">Inspired by the works of Gustav Klimt</text>
+    </svg>
+
+    <section class="hero-section">
+      <div class="badge">
+        <span class="dot"></span>
+        <span class="label">More Than An NFT</span>
+      </div>
+      <h1 class="hero-title">
+        A Persian Handwoven Masterpiece
+        <span class="sub">Now on the Blockchain</span>
+      </h1>
+    </section>
+
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-number">2015</div>
+        <div class="stat-label">Founded</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">1/1</div>
+        <div class="stat-label">Limited Edition</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">Artist Collective</div>
+        <div class="stat-label">Design & Weaving</div>
+      </div>
     </div>
-    <div class="stat-item">
-      <div class="stat-number">1/1</div>
-      <div class="stat-label">Limited Edition</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">Artist Collective</div>
-      <div class="stat-label">Design & Weaving</div>
-    </div>
+
   </div>
 
 </body>
