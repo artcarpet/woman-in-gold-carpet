@@ -138,7 +138,7 @@
     z-index: 2;
     display: flex;
     gap: 70px;
-    padding: 30px 40px 100px;
+    padding: 30px 40px 120px;
   }
   .stat-item .stat-number {
     font-family: 'Consolas', 'Courier New', monospace;
@@ -154,7 +154,7 @@
     letter-spacing: 0.5px;
   }
 
-  /* Klimt-inspired circuit line */
+  /* Klimt-inspired circuit lines */
   .klimt-line {
     position: absolute;
     top: 0;
@@ -166,8 +166,8 @@
   }
   .klimt-text {
     font-family: 'Consolas', 'Courier New', monospace;
-    font-size: 0.8rem;
-    font-weight: 700;
+    font-size: 1.05rem;
+    font-weight: 800;
     letter-spacing: 1px;
     fill: #f5b400;
   }
@@ -191,6 +191,7 @@
   <div class="hero-wrapper">
 
     <svg class="klimt-line" viewBox="0 0 1400 700" preserveAspectRatio="none">
+      <!-- original line -->
       <polyline points="150,620 150,520 350,400 350,260 700,260 700,120 950,120"
                 fill="none" stroke="#f5b400" stroke-width="1.5" opacity="0.7"/>
       <circle cx="150" cy="620" r="5" fill="none" stroke="#f5b400" stroke-width="1.5"/>
@@ -198,6 +199,13 @@
       <circle cx="350" cy="400" r="3" fill="#f5b400" opacity="0.8"/>
       <circle cx="700" cy="260" r="3" fill="#f5b400" opacity="0.8"/>
       <text x="965" y="125" class="klimt-text">Inspired by the works of Gustav Klimt</text>
+
+      <!-- new line (as drawn in red sketch) -->
+      <polyline points="140,660 700,660 700,400 850,260"
+                fill="none" stroke="#f5b400" stroke-width="1.5" opacity="0.7"/>
+      <circle cx="140" cy="660" r="5" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+      <circle cx="850" cy="260" r="5" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+      <circle cx="700" cy="400" r="3" fill="#f5b400" opacity="0.8"/>
     </svg>
 
     <section class="hero-section">
