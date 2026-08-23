@@ -12,6 +12,65 @@
       color: #f5f5f5;
       text-align: center;
     }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      align-items: stretch;
+      height: 80px;
+      background: #f2f2f2;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 30px;
+    }
+    .nav-left img {
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+    }
+    .nav-left .brand {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #111;
+      letter-spacing: 0.5px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      margin-left: 40px;
+      flex: 1;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: 'Consolas', 'Courier New', monospace;
+    }
+    .nav-links a:hover { color: #000; }
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5b400;
+      padding: 0 45px;
+      text-decoration: none;
+      color: #000;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: #ffc72c; }
+
+    /* Notice */
     .notice {
       background: #d4af37;
       color: #000;
@@ -20,13 +79,9 @@
       font-size: 0.95rem;
       letter-spacing: 0.3px;
     }
-    header {
-      padding: 40px 20px;
-    }
-    header img.logo {
-      width: 80px;
-      margin-bottom: 20px;
-    }
+
+    header { padding: 40px 20px; }
+    header img.logo { width: 80px; margin-bottom: 20px; }
     h1 {
       font-size: 2.5rem;
       background: linear-gradient(90deg, #d4af37, #f9e79f);
@@ -40,10 +95,7 @@
       overflow: hidden;
       box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
     }
-    .hero img {
-      width: 100%;
-      display: block;
-    }
+    .hero img { width: 100%; display: block; }
     p.description {
       max-width: 600px;
       margin: 20px auto;
@@ -61,53 +113,7 @@
       border-radius: 8px;
       transition: 0.3s;
     }
-    .btn:hover {
-      background: #f9e79f;
-    }
-    section {
-      max-width: 700px;
-      margin: 50px auto;
-      padding: 0 20px;
-      text-align: left;
-    }
-    section h2 {
-      color: #d4af37;
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-      border-bottom: 1px solid #333;
-      padding-bottom: 8px;
-    }
-    section p {
-      line-height: 1.7;
-      color: #ccc;
-    }
-    .details-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-    .details-table td {
-      padding: 10px;
-      border-bottom: 1px solid #222;
-      color: #ccc;
-    }
-    .details-table td:first-child {
-      color: #d4af37;
-      font-weight: bold;
-      width: 40%;
-    }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      justify-content: center;
-      margin-top: 20px;
-    }
-    .gallery img {
-      width: 220px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-    }
+    .btn:hover { background: #f9e79f; }
     footer {
       padding: 30px;
       color: #777;
@@ -116,6 +122,18 @@
   </style>
 </head>
 <body>
+
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="logo.gif" alt="Art Carpet Logo">
+      <span class="brand">Art Carpet</span>
+    </div>
+    <div class="nav-links">
+      <a href="#">Collections</a>
+      <a href="#">Gallery</a>
+    </div>
+    <a href="#" class="nav-cta">Click to Buy →</a>
+  </nav>
 
   <div class="notice">
     🚧 This website is currently under construction — more content coming soon 🚧
@@ -138,34 +156,6 @@
   <a class="btn" href="https://element.market/collections/woman-in-gold-carpet-1-1" target="_blank">
     View on Element
   </a>
-
-  <section>
-    <h2>About the Artwork</h2>
-    <p>
-      "Woman in Gold Carpet" is a one-of-a-kind digital artwork that reimagines 
-      traditional carpet motifs through a modern, golden aesthetic. Each detail 
-      reflects a fusion of heritage and contemporary digital art, making this 
-      piece a truly unique addition to any collection.
-    </p>
-  </section>
-
-  <section>
-    <h2>Details</h2>
-    <table class="details-table">
-      <tr><td>Blockchain</td><td>Polygon</td></tr>
-      <tr><td>Edition</td><td>1 of 1</td></tr>
-      <tr><td>Format</td><td>PNG / GIF</td></tr>
-      <tr><td>Marketplace</td><td>Element</td></tr>
-    </table>
-  </section>
-
-  <section>
-    <h2>Gallery</h2>
-    <div class="gallery">
-      <img src="ONEnft.png" alt="Woman in Gold Carpet NFT">
-      <img src="box.gif" alt="Reveal Box Animation">
-    </div>
-  </section>
 
   <footer>
     &copy; 2026 Art Carpet. All rights reserved.
