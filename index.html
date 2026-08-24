@@ -218,18 +218,6 @@
     object-fit: cover;
     display: block;
   }
-  .featured-image .caption {
-    position: absolute;
-    bottom: 25px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 1.4rem;
-    letter-spacing: 1px;
-    color: #f5e6b8;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.9);
-  }
   .featured-info {
     flex: 1;
     padding: 60px;
@@ -267,10 +255,11 @@
     padding-bottom: 22px;
     border-bottom: 1px solid #2a2a2a;
   }
-  .featured-desc:last-of-type {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
+  .artwork-caption {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+    color: #f5b400;
+    letter-spacing: 0.5px;
   }
 </style>
 </head>
@@ -328,7 +317,6 @@
   <div class="featured-box">
     <div class="featured-image">
       <img src="hero.png" alt="Woman in Gold Carpet Artwork">
-      <div class="caption">Woman In Gold Carpet 1/1</div>
     </div>
     <div class="featured-info">
       <div class="featured-label">The Story</div>
@@ -341,6 +329,7 @@
       <p class="featured-desc">
         Crafted over a period of fifteen months by master weavers, this artwork embodies patience, precision, and centuries of craftsmanship.
       </p>
+      <p class="artwork-caption">Woman In Gold _ Persian Carpet 1/1</p>
     </div>
   </div>
 
