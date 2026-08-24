@@ -222,35 +222,35 @@
   .unveiling-section {
     background: #f6f5f2;
     color: #111;
-    padding: 70px 40px;
+    padding: 40px 40px 70px;
   }
   .unveiling-box {
-    max-width: 900px;
-    margin: 0 auto 45px;
+    max-width: 700px;
+    margin: 0 auto 25px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 45px 50px;
+    padding: 28px 35px;
     text-align: left;
   }
   .unveiling-title {
     font-family: 'Times New Roman', Times, serif;
-    font-size: 2.4rem;
+    font-size: 1.9rem;
     font-weight: 700;
     color: #111;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
   }
   .unveiling-subtitle {
     font-family: 'Times New Roman', Times, serif;
     font-style: italic;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #b8860b;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
   }
   .unveiling-text {
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     color: #222;
-    line-height: 1.8;
-    margin-bottom: 14px;
+    line-height: 1.55;
+    margin-bottom: 8px;
     max-width: 700px;
   }
   .unveiling-text .name {
@@ -258,22 +258,26 @@
     font-weight: 600;
   }
   .unveiling-meta {
-    margin-top: 20px;
-    padding-top: 15px;
+    margin-top: 12px;
+    padding-top: 10px;
     border-top: 1px solid #e0e0e0;
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     color: #555;
-    line-height: 1.6;
+    line-height: 1.5;
   }
   .unveiling-video {
-    max-width: 900px;
+    max-width: 700px;
+    height: 450px;
     margin: 0 auto;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    background: #000;
+    border: 1px solid #2a2a2a;
   }
   .unveiling-video video {
     width: 100%;
+    height: 100%;
+    object-fit: contain;
     display: block;
   }
 </style>
@@ -405,7 +409,7 @@
 
     <div class="unveiling-video">
       <video controls poster="hero.png">
-        <source src="ambassador-interview.mp4" type="video/mp4">
+        <source src="reveal.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
