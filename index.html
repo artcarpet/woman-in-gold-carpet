@@ -202,15 +202,24 @@
     justify-content: center;
   }
   .story-box-video video { width: 100%; height: 100%; object-fit: contain; display: block; }
-  .story-box-content { flex: 1; padding: 55px; background: #f6f5f2; display: flex; flex-direction: column; justify-content: center; }
-  .story-box-badge { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
-  .story-box-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #f5b400; }
-  .story-box-badge span.label {
-    font-family: 'Consolas', 'Courier New', monospace; font-size: 0.8rem; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase; color: #f5b400;
+  .story-box-content {
+    flex: 1;
+    padding: 55px;
+    background: #f6f5f2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
-  .story-box-title { font-size: 1.8rem; font-weight: 700; color: #111; margin-bottom: 20px; }
-  .story-box-text { font-size: 1rem; line-height: 1.8; color: #444; max-width: 480px; }
+  .interview-text {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.05rem;
+    color: #111;
+    line-height: 1.85;
+    max-width: 480px;
+    margin-bottom: 18px;
+  }
 </style>
 </head>
 <body>
@@ -362,6 +371,12 @@
 
     <div class="story-box">
       <div class="story-box-content">
+        <p class="interview-text">
+          This handwoven masterpiece is more than a carpet. It is the meeting point of Persian craftsmanship, fine art, and cultural heritage.
+        </p>
+        <p class="interview-text">
+          Inspired by one of the world's most celebrated paintings, every knot reflects months of dedication, precision, and artistic vision.
+        </p>
       </div>
       <div class="story-box-video">
         <video controls>
@@ -373,6 +388,9 @@
 
     <div class="story-box reverse">
       <div class="story-box-content">
+        <p class="interview-text">
+          Every thread carries the memory of Persian craftsmanship, transforming wool and silk into a timeless work of art.
+        </p>
       </div>
       <div class="story-box-video">
         <video controls>
