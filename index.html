@@ -1,1 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Art Carpet</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #0d0d0d;
+    color: #f5f5f5;
+  }
 
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Navbar */
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: stretch;
+    height: 80px;
+    background: #f2f2f2;
+  }
+  .nav-left { display: flex; align-items: center; padding: 0 30px; }
+  .logo-wrap {
+    position: relative; width: 60px; height: 60px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-wrap::before {
+    content: ""; position: absolute; width: 80px; height: 80px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,180,0,0.55) 0%, rgba(245,180,0,0) 70%);
+    animation: pulse-glow 2.5s ease-in-out infinite; z-index: 0;
+  }
+  .logo-wrap img { position: relative; width: 60px; height: 60px; border-radius: 8px; z-index: 1; }
+  @keyframes pulse-glow { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.25); opacity: 1; } }
+  .nav-links { display: flex; align-items: center; gap: 32px; margin-left: 40px; flex: 1; }
+  .nav-links a {
+    text-decoration: none; color: #333; font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; font-family: 'Consolas', 'Courier New', monospace;
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color: #000; }
+  .nav-social { display: flex; align-items: center; gap: 18px; padding: 0 30px; }
+  .nav-social a { display: flex; align-items: center; cursor: pointer; }
+  .nav-social a svg { width: 20px; height: 20px; fill: #333; transition: 0.2s; }
+  .nav-social a:hover svg { fill: #000; }
+  .nav-cta {
+    display: flex; align-items: center; justify-content: center; background: #f5b400;
+    padding: 0 45px; text-decoration: none; color: #000; font-weight: 800; font-size: 0.9rem;
+    letter-spacing: 2px; font-family: 'Consolas', 'Courier New', monospace; white-space: nowrap;
+  }
+  .nav-cta:hover { background: #ffc72c; }
+
+  /* Notice bar */
+  .notice {
+    background: #f5b400; color: #000; font-weight: bold; text-align: center;
+    padding: 10px 15px; font-size: 0.95rem; letter-spacing: 0.3px;
+  }
+
+  /* Hero */
+  .hero-section { position: relative; padding: 70px 40px 40px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 10px; border: 1px solid #333;
+    padding: 10px 20px; border-radius: 4px; margin-bottom: 35px;
+  }
+  .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #f5b400; }
+  .badge span.label {
+    font-family: 'Consolas', 'Courier New', monospace; font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; color: #f5b400;
+  }
+  .hero-title { position: relative; font-size: 3rem; font-weight: 800; line-height: 1.25; color: #fff; max-width: 900px; }
+  .hero-title .line-break { display: block; }
+  .hero-title .sub { display: block; color: #999; font-weight: 700; }
+
+  .connector { position: absolute; display: flex; align-items: center; gap: 20px; }
+  .connector .line-track { position: relative; height: 1px; background: rgba(245,180,0,0.35); }
+  .connector .circle {
+    position: absolute; top: 50%; width: 7px; height: 7px; border-radius: 50%;
+    background: #0d0d0d; border: 1px solid #ffffff; transform: translateY(-50%);
+  }
+  .connector .circle.start { left: -3.5px; }
+  .connector .circle.end { right: -3.5px; }
+  .connector .moving-dot {
+    position: absolute; top: 50%; width: 5px; height: 5px; border-radius: 50%;
+    background: #f5b400; box-shadow: 0 0 6px 1px rgba(245,180,0,0.8);
+    transform: translateY(-50%); animation: travel 3s linear infinite;
+  }
+  @keyframes travel { 0% { left: 0%; } 100% { left: 100%; } }
+  .connector .caption {
+    font-family: 'Consolas', 'Courier New', monospace; font-size: 1.3rem; font-weight: 800;
+    color: #f5b400; white-space: nowrap;
+  }
+  .connector.klimt { top: 88px; left: 260px; }
+  .connector.klimt .line-track { width: 400px; }
+  .connector.polygon { top: 299px; left: 580px; }
+  .connector.polygon .line-track { width: 400px; background: rgba(168,85,247,0.35); }
+  .connector.polygon .moving-dot { background: #a855f7; box-shadow: 0 0 6px 1px rgba(168,85,247,0.8); }
+  .connector.polygon .caption { color: #a855f7; font-size: 0.65rem; }
+
+  /* Stats */
+  .stats { display: flex; gap: 70px; padding: 30px 40px 70px; }
+  .stat-item .stat-number {
+    font-family: 'Consolas', 'Courier New', monospace; font-size: 1.3rem; font-weight: 800;
+    color: #f5b400; margin-bottom: 6px;
+  }
+  .stat-item .stat-label {
+    font-family: 'Consolas', 'Courier New', monospace; font-size: 0.75rem; color: #fff; letter-spacing: 0.5px;
+  }
+
+  /* Catalog section */
+  .catalog-heading { padding: 0 40px; margin-bottom: 25px; }
+  .catalog-box {
+    position: relative; max-width: 700px; margin: 0 auto 80px; border: 1px solid #2a2a2a;
+    border-radius: 12px; overflow: hidden; background: #0f0f0f;
+  }
+  .catalog-slides { position: relative; width: 100%; height: 450px; background: #000; }
+  .catalog-slide {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex;
+    align-items: center; justify-content: center; opacity: 0; transition: opacity 0.5s ease; pointer-events: none;
+  }
+  .catalog-slide.active { opacity: 1; pointer-events: auto; }
+  .catalog-slide img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .catalog-controls {
+    position: absolute; bottom: 15px; left: 0; right: 0; display: flex; align-items: center;
+    justify-content: space-between; padding: 0 20px;
+  }
+  .catalog-dots { display: flex; align-items: center; gap: 10px; }
+  .catalog-dots .dots-wrap { display: flex; gap: 6px; }
+  .catalog-dots .dot-btn {
+    width: 6px; height: 6px; border-radius: 50%; background: #555; border: none;
+    cursor: pointer; padding: 0; transition: 0.2s;
+  }
+  .catalog-dots .dot-btn.active { width: 18px; border-radius: 4px; background: #f5b400; }
+  .catalog-counter {
+    font-family: 'Consolas', 'Courier New', monospace; font-size: 0.75rem; color: #ffffff;
+    font-weight: 700; letter-spacing: 1px;
+  }
+  .catalog-arrows { display: flex; gap: 8px; }
+  .catalog-arrows button {
+    width: 30px; height: 30px; border-radius: 6px; background: #1a1a1a; border: 1px solid #333;
+    color: #f5b400; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center;
+    justify-content: center; transition: 0.2s;
+  }
+  .catalog-arrows button:hover { background: #2a2a2a; }
+
+  /* Unveiling section */
+  .unveiling-section { background: #f6f5f2; color: #111; padding: 40px 40px 70px; }
+  .unveiling-box {
+    max-width: 700px; margin: 0 auto 25px; border: 1px solid #ddd; border-radius: 8px;
+    padding: 28px 35px; text-align: left;
+  }
+  .unveiling-title { font-family: 'Times New Roman', Times, serif; font-size: 1.9rem; font-weight: 700; color: #111; margin-bottom: 6px; }
+  .unveiling-subtitle { font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 0.9rem; color: #b8860b; margin-bottom: 12px; }
+  .unveiling-text { font-family: 'Segoe UI', Arial, sans-serif; font-size: 0.78rem; color: #222; line-height: 1.55; margin-bottom: 8px; max-width: 700px; }
+  .unveiling-text .name { color: #b8860b; font-weight: 600; }
+  .unveiling-meta { margin-top: 12px; padding-top: 10px; border-top: 1px solid #e0e0e0; font-size: 0.72rem; color: #555; line-height: 1.5; }
+  .unveiling-video {
+    max-width: 700px; height: 450px; margin: 0 auto; border-radius: 10px; overflow: hidden;
+    background: #000; border: 1px solid #2a2a2a;
+  }
+  .unveiling-video video { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+  /* Our Story header */
+  .story-header { background: #f6f5f2; color: #111; padding: 60px 40px 20px; }
+  .story-label-line { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+  .story-label-line .line { width: 60px; height: 2px; background: #f5b400; }
+  .story-label-line .label {
+    font-family: 'Consolas', 'Courier New', monospace; font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; color: #f5b400;
+  }
+  .story-quote {
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    white-space: nowrap;
+    max-width: none;
+  }
+
+  /* Story boxes (interview cards) */
+  .story-boxes {
+    background: #f6f5f2;
+    padding: 30px 40px 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .story-box {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .story-box.reverse { flex-direction: row-reverse; }
+  .story-box-video {
+    flex: 1;
+    min-height: 400px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .story-box-video video { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .story-box-content {
+    flex: 1;
+    padding: 55px;
+    background: #f6f5f2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .interview-text {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 1rem;
+    color: #222;
+    line-height: 1.7;
+    max-width: 460px;
+    margin-bottom: 12px;
+  }
+  .interview-line {
+    width: 60px;
+    height: 1px;
+    background: #000;
+    margin-top: 10px;
+  }
+
+  /* Gallery section header */
+  .gallery-heading {
+    background: #0d0d0d;
+    padding: 70px 40px 0;
+  }
+
+  /* Gallery slideshow */
+  .gallery-slider {
+    position: relative;
+    max-width: 900px;
+    height: 512px;
+    margin: 30px auto 20px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.6);
+  }
+  .gallery-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.4s ease;
+  }
+  .gallery-slide.active { opacity: 1; }
+  .gallery-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .gallery-dots {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 20px 60px;
+  }
+  .gallery-dots .dot-btn {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #444;
+    border: none;
+    padding: 0;
+    transition: 0.3s;
+  }
+  .gallery-dots .dot-btn.active {
+    width: 24px;
+    border-radius: 4px;
+    background: #f5b400;
+  }
+
+  /* Elegant section divider */
+  .section-divider {
+    background: #0d0d0d;
+    padding: 25px 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+  }
+  .section-divider .divider-line {
+    flex: 1;
+    max-width: 160px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  }
+  .section-divider .diamond {
+    color: #f5b400;
+    font-size: 0.75rem;
+    transform: rotate(45deg);
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border: 1px solid #f5b400;
+  }
+
+  /* Polygon benefits section - bold & dynamic, now on black background */
+  .polygon-section {
+    background: #0d0d0d;
+    color: #f5f5f5;
+    padding: 40px 40px 90px;
+  }
+  .polygon-title {
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    color: #ffffff;
+    max-width: 700px;
+    line-height: 1.3;
+    margin-bottom: 30px;
+  }
+  .polygon-card {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 60px 55px;
+    background: linear-gradient(135deg, #14102a, #3b1f6d 45%, #7c3aed 100%);
+    background-size: 220% 220%;
+    animation: gradientShift 10s ease infinite;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(124,58,237,0.25);
+  }
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .polygon-card::before {
+    content: "";
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+    top: -120px;
+    right: -100px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .polygon-card::after {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(216,180,254,0.18), transparent 70%);
+    bottom: -100px;
+    left: -80px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .polygon-card-inner { position: relative; z-index: 1; }
+
+  /* Animated Polygon coin mark top-right */
+  .polygon-logo-mark {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    width: 90px;
+    height: 90px;
+    z-index: 3;
+    perspective: 700px;
+  }
+  .polygon-logo-mark .coin-glow {
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(circle, rgba(168,85,247,0.45), transparent 70%);
+    border-radius: 50%;
+    animation: glowPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.5; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.1); }
+  }
+  .polygon-logo-mark .float-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    animation: floatCoin 4s ease-in-out infinite;
+  }
+  @keyframes floatCoin {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .polygon-logo-mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    animation: spinCoin 9s linear infinite;
+    filter: drop-shadow(0 6px 15px rgba(0,0,0,0.4));
+  }
+  @keyframes spinCoin {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+  }
+  .polygon-logo-mark .orbit-dot {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #d8b4fe;
+    box-shadow: 0 0 10px 3px rgba(216,180,254,0.8);
+    animation: orbitDot 5s linear infinite;
+  }
+  @keyframes orbitDot {
+    from { transform: rotate(0deg) translateX(55px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(55px) rotate(-360deg); }
+  }
+
+  .polygon-tagline {
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.7rem;
+    margin-bottom: 40px;
+    max-width: 500px;
+    line-height: 1.4;
+  }
+  .polygon-tagline .accent { color: #d8b4fe; }
+  .polygon-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px 55px;
+  }
+  .polygon-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: transform 0.3s ease;
+  }
+  .polygon-item:hover { transform: translateX(6px); }
+  .polygon-icon {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background: rgba(255,255,255,0.06);
+    transition: 0.3s;
+  }
+  .polygon-item:hover .polygon-icon {
+    border-color: #d8b4fe;
+    box-shadow: 0 0 18px rgba(216,180,254,0.6);
+  }
+  .polygon-item h4 {
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .polygon-item p {
+    color: #c9bce0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Marketplace (Carpet NFT) section */
+  .marketplace-section {
+    background: #f6f5f2;
+    color: #111;
+    padding: 70px 40px 40px;
+  }
+  .marketplace-cards {
+    display: flex;
+    gap: 30px;
+    margin-top: 35px;
+    flex-wrap: wrap;
+  }
+  .marketplace-card {
+    flex: 1;
+    min-width: 280px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    padding: 45px;
+    text-decoration: none;
+    color: #111;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    display: block;
+  }
+  .marketplace-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #f5b400, #ffe08a, #f5b400);
+    background-size: 200% 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .marketplace-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+    border-color: #f5b400;
+  }
+  .marketplace-card:hover::before {
+    transform: scaleX(1);
+    animation: shimmer 2s linear infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  .marketplace-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #f5b400;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+  }
+  .marketplace-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .marketplace-desc {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  .marketplace-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #b8860b;
+    font-weight: 700;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .marketplace-card:hover .marketplace-link { color: #f5b400; }
+
+  /* Site footer - expanded, multi-column */
+  .site-footer {
+    background: #0d0d0d;
+    border-top: 1px solid #222;
+    padding: 70px 40px 40px;
+  }
+  .footer-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    max-width: 1100px;
+    margin: 0 auto 50px;
+  }
+  .footer-col {
+    flex: 1;
+    min-width: 180px;
+  }
+  .footer-col h5 {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #f5b400;
+    margin-bottom: 18px;
+  }
+  .footer-col a, .footer-col span.footer-text {
+    display: block;
+    color: #999;
+    text-decoration: none;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+  .footer-col a:hover { color: #f5b400; }
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-top: 35px;
+    border-top: 1px solid #1e1e1e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+  .footer-bottom img {
+    width: 38px;
+    border-radius: 6px;
+    opacity: 0.9;
+    margin-bottom: 5px;
+  }
+  .footer-bottom .footer-brand {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: #f5b400;
+    text-transform: uppercase;
+  }
+  .footer-bottom .footer-tagline {
+    font-size: 0.8rem;
+    color: #888;
+    max-width: 500px;
+    line-height: 1.5;
+  }
+  .footer-bottom .footer-copy {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #555;
+    letter-spacing: 0.5px;
+    margin-top: 6px;
+  }
+
+  /* Contact modal */
+  .contact-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+  }
+  .contact-modal-overlay.active { display: flex; }
+  .contact-modal {
+    background: #ffffff;
+    color: #111;
+    width: 90%;
+    max-width: 420px;
+    border-radius: 12px;
+    padding: 30px;
+    position: relative;
+  }
+  .contact-modal h3 {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+    color: #111;
+  }
+  .contact-modal input, .contact-modal textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.9rem;
+  }
+  .contact-modal textarea { min-height: 100px; resize: vertical; }
+  .contact-modal .send-btn {
+    background: #f5b400;
+    color: #000;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    font-size: 0.95rem;
+  }
+  .contact-modal .send-btn:hover { background: #ffc72c; }
+  .contact-modal .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: #555;
+    background: none;
+    border: none;
+    line-height: 1;
+  }
+</style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-left">
+      <div class="logo-wrap">
+        <img src="logo.gif" alt="Art Carpet Logo">
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#">Collections</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#">Download Catalog</a>
+      <a href="certificate.html">Certificate</a>
+      <a href="shipping.html">Shipping</a>
+    </div>
+    <div class="nav-social">
+      <a href="#" id="mailIconBtn" aria-label="Contact via Email">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+      <a href="https://x.com/Womaningoldcarp" target="_blank" aria-label="X (Twitter)">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" target="_blank" aria-label="Telegram">
+        <svg viewBox="0 0 24 24"><path d="M21.94 4.6c.28-1.02-.66-1.9-1.66-1.5L2.4 10.3c-.98.4-.9 1.83.12 2.1l4.5 1.18 1.72 5.4c.24.75 1.2.95 1.72.36l2.4-2.72 4.5 3.4c.8.6 1.94.16 2.14-.82l3.44-14.6zM8.6 13.1l9.3-6.3c.24-.16.5.16.28.36l-7.6 6.9c-.28.25-.46.6-.5 1l-.2 2-1.28-3.96z"/></svg>
+      </a>
+    </div>
+    <a href="https://element.market/collections/woman-in-gold-carpet-1-1" target="_blank" class="nav-cta">Make an Offer →</a>
+  </nav>
+
+  <div class="notice">
+    🚧 This site is not yet complete and is currently being updated 🚧
+  </div>
+
+  <section class="hero-section">
+    <div class="badge reveal">
+      <span class="dot"></span>
+      <span class="label">More Than An NFT</span>
+    </div>
+    <h1 class="hero-title reveal">
+      <span class="line-break">A Persian Handwoven</span>
+      <span class="line-break">Masterpiece</span>
+      <span class="sub">Now on the Blockchain</span>
+    </h1>
+
+    <div class="connector klimt">
+      <div class="line-track">
+        <span class="circle start"></span>
+        <span class="moving-dot"></span>
+        <span class="circle end"></span>
+      </div>
+      <span class="caption">Inspired by the artwork of Gustav Klimt</span>
+    </div>
+
+    <div class="connector polygon">
+      <div class="line-track">
+        <span class="circle start"></span>
+        <span class="moving-dot"></span>
+        <span class="circle end"></span>
+      </div>
+      <span class="caption">Minted on the Polygon Network</span>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat-item reveal">
+      <div class="stat-number">2015</div>
+      <div class="stat-label">Founded</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number">1/1</div>
+      <div class="stat-label">Limited Edition</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number">Artist Collective</div>
+      <div class="stat-label">Design & Weaving</div>
+    </div>
+  </div>
+
+  <div class="catalog-heading">
+    <div class="badge reveal">
+      <span class="dot"></span>
+      <span class="label">The Catalog</span>
+    </div>
+  </div>
+
+  <div class="catalog-box reveal">
+    <div class="catalog-slides" id="catalogSlides">
+      <div class="catalog-slide active"><img src="catalog1.png" alt="Catalog page 1"></div>
+      <div class="catalog-slide"><img src="catalog2.png" alt="Catalog page 2" loading="lazy"></div>
+      <div class="catalog-slide"><img src="catalog3.png" alt="Catalog page 3" loading="lazy"></div>
+      <div class="catalog-slide"><img src="catalog4.png" alt="Catalog page 4" loading="lazy"></div>
+      <div class="catalog-slide"><img src="catalog5.png" alt="Catalog page 5" loading="lazy"></div>
+      <div class="catalog-slide"><img src="catalog6.png" alt="Catalog page 6" loading="lazy"></div>
+      <div class="catalog-slide"><img src="catalog7.png" alt="Catalog page 7" loading="lazy"></div>
+      <div class="catalog-slide"><img src="catalog8.png" alt="Catalog page 8" loading="lazy"></div>
+    </div>
+    <div class="catalog-controls">
+      <div class="catalog-dots">
+        <div class="dots-wrap" id="catalogDots"></div>
+        <span class="catalog-counter" id="catalogCounter">1 / 8</span>
+      </div>
+      <div class="catalog-arrows">
+        <button id="prevBtn" aria-label="Previous">&#8592;</button>
+        <button id="nextBtn" aria-label="Next">&#8594;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Official Unveiling Section -->
+  <section class="unveiling-section">
+    <div class="unveiling-box reveal">
+      <h2 class="unveiling-title">OFFICIAL UNVEILING</h2>
+      <p class="unveiling-subtitle">Presented by the Austrian Ambassador in Tehran</p>
+
+      <p class="unveiling-text">
+        On 23 January 2018, <em>Woman in Gold – A Persian Handwoven Masterpiece</em> was officially unveiled at Parsian Hotel, Tehran.
+      </p>
+      <p class="unveiling-text">
+        The ceremony was presented by <span class="name">Dr. Stefan Scholz</span>, Austrian Ambassador to Iran, celebrating the artwork as a cultural bridge between Gustav Klimt's artistic legacy and the centuries-old tradition of Persian carpet weaving.
+      </p>
+      <p class="unveiling-text">
+        This official event marked the beginning of the artwork's international journey.
+      </p>
+
+      <div class="unveiling-meta">
+        Parsian Hotel – Tehran<br>
+        23 January 2018
+      </div>
+    </div>
+
+    <div class="unveiling-video reveal">
+      <video id="unveilVideo" controls poster="poster1.jpg">
+        <source src="reveal.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </section>
+
+  <!-- Our Story header -->
+  <section class="story-header">
+    <div class="story-label-line reveal">
+      <span class="line"></span>
+      <span class="label">Our Story</span>
+    </div>
+    <p class="story-quote reveal">
+      Honoring the original masterpiece through a new artistic dimension.
+    </p>
+  </section>
+
+  <!-- Story boxes (interview cards) -->
+  <div class="story-boxes">
+
+    <div class="story-box reveal">
+      <div class="story-box-content">
+        <p class="interview-text">
+          This handwoven masterpiece is more than a carpet. It is the meeting point of Persian craftsmanship, fine art, and cultural heritage.
+        </p>
+        <p class="interview-text">
+          Inspired by one of the world's most celebrated paintings, every knot reflects months of dedication, precision, and artistic vision.
+        </p>
+        <div class="interview-line"></div>
+      </div>
+      <div class="story-box-video">
+        <video controls>
+          <source src="ambassador-interview.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+    <div class="story-box reverse reveal">
+      <div class="story-box-content">
+        <p class="interview-text">
+          Created as a unique work, this work represents a dialogue between cultures. This tapestry recreates a famous work of art in a different way by artists from the Orient.
+        </p>
+        <p class="interview-text">
+          Today, this work of art is designed as an artistic asset for a new generation of collectors and art enthusiasts.
+        </p>
+        <div class="interview-line"></div>
+      </div>
+      <div class="story-box-video">
+        <video controls>
+          <source src="Interview2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Gallery section (black background continuation) -->
+  <section id="gallery" class="gallery-heading">
+    <div class="badge reveal">
+      <span class="dot"></span>
+      <span class="label">Gallery</span>
+    </div>
+
+    <div class="gallery-slider reveal" id="gallerySlider">
+      <div class="gallery-slide active"><img src="G1.jpg" alt="Gallery photo 1"></div>
+      <div class="gallery-slide"><img src="G2.jpg" alt="Gallery photo 2"></div>
+      <div class="gallery-slide"><img src="G3.jpg" alt="Gallery photo 3"></div>
+      <div class="gallery-slide"><img src="G4.jpg" alt="Gallery photo 4"></div>
+      <div class="gallery-slide"><img src="G5.jpg" alt="Gallery photo 5"></div>
+      <div class="gallery-slide"><img src="G6.jpg" alt="Gallery photo 6"></div>
+      <div class="gallery-slide"><img src="G7.jpg" alt="Gallery photo 7"></div>
+      <div class="gallery-slide"><img src="G8.jpg" alt="Gallery photo 8"></div>
+      <div class="gallery-slide"><img src="G9.jpg" alt="Gallery photo 9"></div>
+      <div class="gallery-slide"><img src="G10.jpg" alt="Gallery photo 10"></div>
+    </div>
+    <div class="gallery-dots" id="galleryDots"></div>
+  </section>
+
+  <!-- Elegant divider -->
+  <div class="section-divider">
+    <span class="divider-line"></span>
+    <span class="diamond"></span>
+    <span class="divider-line"></span>
+  </div>
+
+  <!-- Why Polygon section (bold & dynamic, black background) -->
+  <section class="polygon-section">
+    <div class="badge reveal">
+      <span class="dot"></span>
+      <span class="label">Polygon Network</span>
+    </div>
+    <h2 class="polygon-title reveal">Why Minted on Polygon?</h2>
+
+    <div class="polygon-card reveal">
+
+      <div class="polygon-logo-mark">
+        <div class="coin-glow"></div>
+        <div class="orbit-dot"></div>
+        <div class="float-wrap">
+          <img src="polygon-coin.png" alt="Polygon Coin">
+        </div>
+      </div>
+
+      <div class="polygon-card-inner">
+        <p class="polygon-tagline">Fast. Secure. <span class="accent">Sustainable.</span></p>
+
+        <div class="polygon-grid">
+          <div class="polygon-item">
+            <div class="polygon-icon">$</div>
+            <div>
+              <h4>Low Minting Fees</h4>
+              <p>Save more with minimal transaction costs on every mint.</p>
+            </div>
+          </div>
+
+          <div class="polygon-item">
+            <div class="polygon-icon">⚡</div>
+            <div>
+              <h4>Fast Transactions</h4>
+              <p>Enjoy quick, smooth confirmations for every purchase.</p>
+            </div>
+          </div>
+
+          <div class="polygon-item">
+            <div class="polygon-icon">♻</div>
+            <div>
+              <h4>Eco-Friendly</h4>
+              <p>A more energy-efficient, sustainable blockchain choice.</p>
+            </div>
+          </div>
+
+          <div class="polygon-item">
+            <div class="polygon-icon">✓</div>
+            <div>
+              <h4>Secure &amp; Reliable</h4>
+              <p>Backed by Ethereum-grade security and scalable infrastructure.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marketplace links section -->
+  <section class="marketplace-section">
+    <div class="story-label-line reveal">
+      <span class="line"></span>
+      <span class="label">Carpet NFT</span>
+    </div>
+
+    <div class="marketplace-cards">
+      <a href="https://element.market/assets/polygon/0xc0133445a3a6527127c96d535145aa33aee3020e/2" target="_blank" class="marketplace-card reveal">
+        <div class="marketplace-icon">E</div>
+        <h3 class="marketplace-name">Element Market</h3>
+        <p class="marketplace-desc">
+          View the official listing on Element, a leading multichain NFT marketplace built for creators and collectors.
+        </p>
+        <span class="marketplace-link">View Listing →</span>
+      </a>
+
+      <a href="https://rarible.com/polygon/items/0xc0133445a3a6527127c96d535145aa33aee3020e:2" target="_blank" class="marketplace-card reveal">
+        <div class="marketplace-icon">R</div>
+        <h3 class="marketplace-name">Rarible</h3>
+        <p class="marketplace-desc">
+          Explore this artwork on Rarible, a decentralized community-owned NFT marketplace on the Polygon network.
+        </p>
+        <span class="marketplace-link">View Listing →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-columns">
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <a href="#">Collections</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#">Download Catalog</a>
+      </div>
+      <div class="footer-col">
+        <h5>Info</h5>
+        <a href="certificate.html">Certificate</a>
+        <a href="shipping.html">Shipping</a>
+        <a href="#" id="footerContactBtn">Contact Us</a>
+      </div>
+      <div class="footer-col">
+        <h5>Team</h5>
+        <span class="footer-text">Team of designers and artists</span>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <a href="mailto:safavicarpet@gmail.com">safavicarpet@gmail.com</a>
+        <a href="https://x.com/Womaningoldcarp" target="_blank">X (Twitter)</a>
+        <a href="#" target="_blank">Telegram</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <img src="logo.gif" alt="Art Carpet Logo">
+      <span class="footer-brand">Art Carpet</span>
+      <p class="footer-tagline">A Persian Handwoven Masterpiece, reimagined for the blockchain era.</p>
+      <p class="footer-copy">&copy; 2026 Art Carpet. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Contact modal -->
+  <div class="contact-modal-overlay" id="contactModalOverlay">
+    <div class="contact-modal">
+      <button class="close-btn" id="closeContactModal">&times;</button>
+      <h3>Send us a message</h3>
+      <input type="text" id="contactName" placeholder="Your Name">
+      <input type="email" id="contactEmail" placeholder="Your Email">
+      <textarea id="contactMessage" placeholder="Your Message"></textarea>
+      <button class="send-btn" id="sendContactBtn">Send</button>
+    </div>
+  </div>
+
+  <script>
+    // Catalog carousel
+    const slides = document.querySelectorAll('.catalog-slide');
+    const dotsContainer = document.getElementById('catalogDots');
+    const counter = document.getElementById('catalogCounter');
+    let current = 0;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'dot-btn' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(dot);
+    });
+    const dots = dotsContainer.querySelectorAll('.dot-btn');
+
+    function goTo(index) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      counter.textContent = (current + 1) + ' / ' + slides.length;
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+    document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+
+    // Unveiling video: return to poster when finished
+    const unveilVideo = document.getElementById('unveilVideo');
+    unveilVideo.addEventListener('ended', function() {
+      unveilVideo.load();
+    });
+
+    // Contact modal
+    const mailBtn = document.getElementById('mailIconBtn');
+    const footerContactBtn = document.getElementById('footerContactBtn');
+    const overlay = document.getElementById('contactModalOverlay');
+    const closeBtn = document.getElementById('closeContactModal');
+    const sendBtn = document.getElementById('sendContactBtn');
+
+    function openContactModal(e) {
+      e.preventDefault();
+      overlay.classList.add('active');
+    }
+    mailBtn.addEventListener('click', openContactModal);
+    footerContactBtn.addEventListener('click', openContactModal);
+
+    closeBtn.addEventListener('click', () => overlay.classList.remove('active'));
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) overlay.classList.remove('active');
+    });
+    sendBtn.addEventListener('click', function() {
+      const name = document.getElementById('contactName').value || 'Website Visitor';
+      const email = document.getElementById('contactEmail').value || '';
+      const message = document.getElementById('contactMessage').value || '';
+      const subject = encodeURIComponent('Message from ' + name);
+      const body = encodeURIComponent(message + '\n\nFrom: ' + name + ' (' + email + ')');
+      window.location.href = 'mailto:safavicarpet@gmail.com?subject=' + subject + '&body=' + body;
+      overlay.classList.remove('active');
+    });
+
+    // Scroll reveal animation
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(function(el) { revealObserver.observe(el); });
+
+    // Auto-playing gallery slideshow
+    const gallerySlides = document.querySelectorAll('#gallerySlider .gallery-slide');
+    const galleryDotsContainer = document.getElementById('galleryDots');
+    let galleryCurrent = 0;
+
+    gallerySlides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'dot-btn' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => showGallerySlide(i));
+      galleryDotsContainer.appendChild(dot);
+    });
+    const galleryDots = galleryDotsContainer.querySelectorAll('.dot-btn');
+
+    function showGallerySlide(index) {
+      gallerySlides[galleryCurrent].classList.remove('active');
+      galleryDots[galleryCurrent].classList.remove('active');
+      galleryCurrent = (index + gallerySlides.length) % gallerySlides.length;
+      gallerySlides[galleryCurrent].classList.add('active');
+      galleryDots[galleryCurrent].classList.add('active');
+    }
+
+    setInterval(function() {
+      showGallerySlide(galleryCurrent + 1);
+    }, 4000);
+  </script>
+
+</body>
+</html>
