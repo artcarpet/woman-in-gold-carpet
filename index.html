@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Art Carpet</title>
+<link rel="icon" type="image/png" href="favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -11,6 +12,7 @@
     font-family: 'Segoe UI', Arial, sans-serif;
     background: #0d0d0d;
     color: #f5f5f5;
+    overflow-x: hidden;
   }
 
   /* Scroll reveal */
@@ -392,7 +394,7 @@
   }
   .marketplace-card:hover .marketplace-link { color: #f5b400; }
 
-  /* Polygon benefits section - bold & dynamic, black background */
+  /* Polygon benefits section */
   .polygon-section {
     background: #0d0d0d;
     color: #f5f5f5;
@@ -447,27 +449,6 @@
     pointer-events: none;
   }
   .polygon-card-inner { position: relative; z-index: 1; }
-
-  /* Polygon symbol top-right: just the icon, slow 360 rotation */
-  .polygon-logo-mark {
-    position: absolute;
-    top: 30px;
-    right: 35px;
-    width: 70px;
-    height: 70px;
-    z-index: 3;
-  }
-  .polygon-logo-mark img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    animation: spinSlow 12s linear infinite;
-  }
-  @keyframes spinSlow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
 
   .polygon-tagline {
     color: #ffffff;
@@ -654,6 +635,66 @@
     background: none;
     border: none;
     line-height: 1;
+  }
+
+  /* ===== MOBILE RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 12px 15px;
+    }
+    .nav-left { padding: 0; }
+    .logo-wrap { width: 44px; height: 44px; }
+    .logo-wrap::before { width: 60px; height: 60px; }
+    .logo-wrap img { width: 44px; height: 44px; }
+    .nav-links {
+      order: 3;
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 12px 0 0;
+    }
+    .nav-links a { font-size: 0.68rem; }
+    .nav-social { padding: 0 10px; gap: 12px; }
+    .nav-cta { padding: 0 18px; font-size: 0.75rem; height: 50px; }
+
+    .hero-section { padding: 40px 20px 20px; }
+    .hero-title { font-size: 1.9rem; }
+    .connector { display: none; }
+
+    .stats { flex-direction: column; gap: 25px; padding: 20px 20px 40px; }
+
+    .catalog-heading, .marketplace-section, .polygon-section, .story-header, .unveiling-section, .gallery-heading, .site-footer, .section-divider {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .catalog-box, .gallery-slider, .unveiling-video { max-width: 100%; }
+    .catalog-slides, .gallery-slider { height: 280px; }
+    .unveiling-video { height: 280px; }
+
+    .unveiling-box { padding: 20px; }
+    .unveiling-title { font-size: 1.4rem; }
+
+    .story-quote { white-space: normal; font-size: 1.1rem; }
+
+    .story-box, .story-box.reverse { flex-direction: column; }
+    .story-box-video { min-height: 220px; }
+    .story-box-content { padding: 30px 20px; }
+
+    .marketplace-cards { flex-direction: column; }
+    .marketplace-card { padding: 30px; }
+
+    .polygon-title { font-size: 1.4rem; }
+    .polygon-card { padding: 35px 22px; }
+    .polygon-tagline { font-size: 1.2rem; }
+    .polygon-grid { grid-template-columns: 1fr; gap: 25px; }
+
+    .footer-columns { flex-direction: column; gap: 30px; }
+    .footer-bottom img { width: 32px; }
+
+    .contact-modal { padding: 22px; }
   }
 </style>
 </head>
@@ -910,11 +951,6 @@
     <h2 class="polygon-title reveal">Why Minted on Polygon?</h2>
 
     <div class="polygon-card reveal">
-
-      <div class="polygon-logo-mark">
-        <img src="polygon.jpg" alt="Polygon Symbol">
-      </div>
-
       <div class="polygon-card-inner">
         <p class="polygon-tagline">Fast. Secure. <span class="accent">Sustainable.</span></p>
 
