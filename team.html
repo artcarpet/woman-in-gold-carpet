@@ -1,51 +1,197 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Team | Art Carpet</title>
+<title>Team Section</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #0d0d0d;
-    color: #f5f5f5;
-    min-height: 100vh;
+  :root{
+    --bg: #15110d;
+    --gold: #b9903f;
+    --gold-soft: #8a723f;
+    --wine: #5c2027;
+    --cream: #efe5d3;
+    --cream-dim: rgba(239,229,211,0.62);
+    --line: rgba(185,144,63,0.28);
+  }
+
+  * { box-sizing: border-box; }
+
+  .team-section{
+    background: radial-gradient(ellipse at 50% -10%, #241c14 0%, var(--bg) 55%);
+    color: var(--cream);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    padding: 88px 24px 96px;
+    direction: ltr;
+  }
+
+  .team-eyebrow{
+    text-align: center;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+    margin: 0 0 10px;
+  }
+
+  .team-title{
+    text-align: center;
+    font-weight: 600;
+    font-size: clamp(24px, 3vw, 32px);
+    margin: 0 0 64px;
+    color: var(--cream);
+  }
+
+  .team-portraits{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: clamp(36px, 8vw, 96px);
+    max-width: 760px;
+    margin: 0 auto 72px;
+    flex-wrap: wrap;
+  }
+
+  .portrait-card{
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 190px;
+  }
+
+  .portrait-frame{
+    width: 168px;
+    height: 168px;
+    border-radius: 50%;
+    padding: 5px;
+    background: conic-gradient(from 200deg, var(--gold) 0deg, var(--wine) 140deg, var(--gold) 260deg, var(--gold-soft) 360deg);
+    margin-bottom: 22px;
+  }
+
+  .portrait-frame img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 22%;
+    display: block;
+    border: 3px solid var(--bg);
+  }
+
+  .portrait-name{
+    font-weight: 600;
+    font-size: 19px;
+    color: var(--cream);
+    margin: 0 0 6px;
+  }
+
+  .portrait-role{
+    font-size: 13px;
+    color: var(--cream-dim);
+    margin: 0;
+  }
+
+  .team-divider{
+    width: 1px;
+    height: 90px;
+    background: linear-gradient(to bottom, transparent, var(--line), transparent);
+    margin: 0 auto 0;
+  }
+
+  .team-divider-wrap{
+    display: flex;
     justify-content: center;
+  }
+
+  .team-description{
+    max-width: 620px;
+    margin: 84px auto 0;
     text-align: center;
-    padding: 40px;
+    font-size: 16px;
+    line-height: 1.9;
+    color: rgba(239,229,211,0.86);
   }
-  img { width: 70px; margin-bottom: 30px; border-radius: 10px; }
-  h1 {
-    font-family: 'Consolas', 'Courier New', monospace;
-    font-size: 1.5rem;
-    color: #f5b400;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
+
+  .team-note-wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 52px;
   }
-  p { color: #999; font-size: 0.95rem; margin-bottom: 30px; }
-  a {
-    color: #000;
-    background: #f5b400;
-    text-decoration: none;
-    padding: 12px 30px;
-    border-radius: 6px;
-    font-weight: 700;
-    font-family: 'Consolas', 'Courier New', monospace;
-    letter-spacing: 1px;
-    cursor: pointer;
-    display: inline-block;
+
+  .team-note-mark{
+    width: 22px;
+    height: 22px;
+    margin-bottom: 16px;
   }
-  a:hover { background: #ffc72c; }
+
+  .team-note-mark svg{
+    width: 100%;
+    height: 100%;
+  }
+
+  .team-note{
+    max-width: 460px;
+    text-align: center;
+    font-size: 13.5px;
+    line-height: 1.9;
+    color: var(--cream-dim);
+    margin: 0;
+  }
+
+  @media (max-width: 480px){
+    .team-portraits{ gap: 40px; }
+    .portrait-card{ width: 150px; }
+    .portrait-frame{ width: 136px; height: 136px; }
+  }
 </style>
 </head>
 <body>
-  <img src="logo.gif" alt="Art Carpet Logo">
-  <h1>🚧 Currently Being Updated</h1>
-  <p>The team page is under construction. Please check back soon.</p>
-  <a href="/woman-in-gold-carpet/">← Back to Home</a>
+
+<section class="team-section">
+  <p class="team-eyebrow">Woman in Gold</p>
+  <h2 class="team-title">Design &amp; Weaving Team</h2>
+
+  <div class="team-portraits">
+    <div class="portrait-card">
+      <div class="portrait-frame">
+        <img src="profile_photo_adjusted.jpg" alt="Sajad Faraji">
+      </div>
+      <p class="portrait-name">Sajad Faraji</p>
+      <p class="portrait-role">Designer &amp; Weaver</p>
+    </div>
+
+    <div class="portrait-card">
+      <div class="portrait-frame">
+        <img src="photo_2026-07-30_11-16-30.jpg" alt="Mansour Movaghar">
+      </div>
+      <p class="portrait-name">Mansour Movaghar</p>
+      <p class="portrait-role">Designer &amp; Weaver</p>
+    </div>
+  </div>
+
+  <div class="team-divider-wrap"><div class="team-divider"></div></div>
+
+  <p class="team-description">
+    The tapestry rug "Woman in Gold" is the result of design and weaving by our
+    team of artists and weavers, presented with respect to admirers of Gustav
+    Klimt's artwork. This piece has been released for direct sale to the buyer
+    as an NFT, and ownership of the physical artwork transfers to the buyer
+    upon purchase of the NFT.
+  </p>
+
+  <div class="team-note-wrap">
+    <span class="team-note-mark">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 2 L14.2 9.6 L22 12 L14.2 14.4 L12 22 L9.8 14.4 L2 12 L9.8 9.6 Z" fill="#b9903f"/>
+      </svg>
+    </span>
+    <p class="team-note">
+      For any questions about purchasing, shipping, or price offers, feel free
+      to reach out via Twitter or email.
+    </p>
+  </div>
+</section>
+
 </body>
 </html>
