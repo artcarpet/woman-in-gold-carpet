@@ -16,17 +16,21 @@
   }
 
   .page-header {
-    padding: 60px 40px 10px;
+    padding: 55px 40px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
   }
   .page-header img {
-    width: 62px;
+    width: 58px;
     border-radius: 10px;
-    margin-bottom: 25px;
+    margin-bottom: 14px;
+    display: block;
   }
   .badge {
     display: inline-flex; align-items: center; gap: 10px; border: 1px solid #333;
-    padding: 10px 20px; border-radius: 4px; margin-bottom: 25px;
+    padding: 10px 20px; border-radius: 4px; margin-bottom: 22px;
   }
   .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #f5b400; }
   .badge span.label {
@@ -47,7 +51,6 @@
     font-size: 1rem;
   }
 
-  /* Divider */
   .section-divider {
     padding: 35px 40px 0;
     display: flex; align-items: center; justify-content: center; gap: 18px;
@@ -61,7 +64,6 @@
     width: 8px; height: 8px; border: 1px solid #f5b400;
   }
 
-  /* Info cards */
   .ship-grid {
     max-width: 1000px;
     margin: 45px auto 0;
@@ -95,7 +97,6 @@
   }
   .ship-card p strong { color: #fff; font-weight: 600; }
 
-  /* Highlighted note */
   .ship-note {
     max-width: 1000px;
     margin: 30px auto 0;
@@ -112,7 +113,6 @@
   }
   .ship-note p { font-size: 0.9rem; line-height: 1.75; color: #ccc; }
 
-  /* Contact strip */
   .contact-strip {
     max-width: 1000px;
     margin: 30px auto 0;
@@ -138,7 +138,8 @@
   .back-btn:hover { background: #ffc72c; }
 
   @media (max-width: 768px) {
-    .page-header { padding: 40px 20px 10px; }
+    .page-header { padding: 35px 20px 10px; }
+    .page-header img { width: 48px; }
     .page-title { font-size: 1.5rem; }
     .ship-grid { grid-template-columns: 1fr; padding: 0 20px; gap: 18px; }
     .ship-note, .contact-strip { margin-left: 20px; margin-right: 20px; padding: 22px; }
